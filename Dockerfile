@@ -7,7 +7,7 @@ ARG PASSWORD
 
 # Install Ngrok
 RUN powershell -Command `
-    Invoke-WebRequest -Uri https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip ; `
+    wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip ; `
     Expand-Archive -Path ngrok.zip -DestinationPath C:\ngrok ; `
     Remove-Item -Force ngrok.zip
 
@@ -32,4 +32,3 @@ CMD powershell -Command `
     Start-Process C:\ngrok\ngrok.exe "tcp 3389" ; `
     net start termservice ; `
     Wait-Event -Timeout 3600
-    
